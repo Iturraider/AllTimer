@@ -7,7 +7,7 @@
     <title>Universal Training Timer</title>
     
     <!-- PWA Meta Tags -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#0f172a">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -28,30 +28,30 @@
             margin: 0;
             overflow: hidden;
             height: 100vh;
-            user-select: none; /* Mejorar experiencia de app */
+            width: 100vw;
+            user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
         #root {
             height: 100%;
-        }
-        /* Prevenir scroll elástico en iOS */
-        html, body {
-            position: fixed;
-            overflow: hidden;
             width: 100%;
         }
     </style>
 <script type="importmap">
 {
   "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
     "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/"
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
 </head>
 <body>
     <div id="root"></div>
+    <!-- Punto de entrada explícito para que el navegador cargue la app -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>

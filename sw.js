@@ -1,24 +1,25 @@
 
 const CACHE_NAME = 'unitimer-v1';
+// Solo cacheamos lo esencial para asegurar que el registro no falle por un 404
 const ASSETS = [
   './',
   './index.html',
-  'https://cdn.tailwindcss.com',
-  'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap'
+  './manifest.json'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS);
+      return cache.addAll(ASSETS).catch(err => console.warn('Error precacheando activos:', err));
     })
   );
 });
 
 self.addEventListener('fetch', (event) => {
+  // Estrategia: Network First, falling back to cache
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return response || fetch(event.request);
+    fetch(event.request).catch(() => {
+      return caches.match(event.request);
     })
   );
 });
