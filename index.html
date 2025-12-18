@@ -18,17 +18,13 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0OCIgZmlsbD0iIzBmMTcyYSIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNjAiIHI9IjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzYjgyZjYiIHN0cm9rZS13aWR0aD0iOCIvPjxwYXRoIGQ9Ik01MCAzMHYxME01MCA2MGwyMC0yMCIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjwvc3ZnPg==">
     <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cmVjdCB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgcng9IjEyOCIgZmlsbD0iIzBmMTcyYSIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI4MCIgcj0iMTYwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzYjgyZjYiIHN0cm9rZS13aWR0aD0iNDAiLz48cGF0aCBkPSJNMjU2IDEyMHY0ME0yNTYgNDAwdjQwTTQwMCAyODBoLTQwTTI0MCAyODBoLTgwIiBzdHJva2U9IiMzYjgyZjYiIHN0cm9rZS13aWR0aD0iNDAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0yNTYgMjgwbDgwLTgwIiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iMjQiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xOTIgODB2NDBoMTI4VjgwSDI1NnoiIGZpbGw9IiMzYjgyZjYiLz48L3N2Zz4=">
 
-    <!-- Scripts de Compilación en el Cliente -->
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      // Configuración de Tailwind para evitar avisos y definir el tema
       tailwind.config = {
         theme: {
           extend: {
-            colors: {
-              slate: { 950: '#020617' }
-            }
+            colors: { slate: { 950: '#020617' } }
           }
         }
       }
@@ -47,19 +43,10 @@
             user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
-        #root {
-            height: 100%;
-            width: 100%;
-        }
+        #root { height: 100%; width: 100%; }
         #loader {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0f172a;
-            z-index: 1000;
-            transition: opacity 0.5s;
+            position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+            background: #0f172a; z-index: 1000; transition: opacity 0.5s;
         }
     </style>
 <script type="importmap">
@@ -80,17 +67,16 @@
     </div>
     <div id="root"></div>
 
-    <!-- Usamos Babel para transformar el TSX sobre la marcha en el navegador -->
-    <script type="text/babel" data-type="module" data-presets="typescript,react" src="./index.tsx"></script>
+    <!-- Cargamos el archivo único. IMPORTANTE: type="text/babel" para evitar errores de MIME -->
+    <script type="text/babel" data-presets="typescript,react" src="./index.tsx"></script>
 
     <script>
-      // Ocultar el loader cuando React tome el control
       window.addEventListener('load', () => {
         setTimeout(() => {
           const loader = document.getElementById('loader');
           if (loader) loader.style.opacity = '0';
           setTimeout(() => loader?.remove(), 500);
-        }, 1000);
+        }, 1500);
       });
     </script>
 </body>
